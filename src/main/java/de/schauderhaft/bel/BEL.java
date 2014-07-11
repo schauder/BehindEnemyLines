@@ -1,5 +1,7 @@
 package de.schauderhaft.bel;
 
+import de.schauderhaft.bel.message.Friend;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
