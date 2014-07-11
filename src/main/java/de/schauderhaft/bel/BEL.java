@@ -18,5 +18,6 @@ public class BEL{
     }
 
     private static List<Friend> readFriends() {
+        return null;
     }
 }
