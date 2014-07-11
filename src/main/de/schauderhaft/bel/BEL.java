@@ -4,8 +4,13 @@ import java.io.FileReader;
 import java.util.List;
 
 public class BEL{
+
     public static void main(String args[]){
-            // read ip adresses+ port to connect to
+        new BEL();
+    }
+
+    public BEL(){
+        // read ip adresses+ port to connect to
         List<Friend> friends  = readFriends();
 
         for (Friend friend : friends) {
@@ -14,9 +19,9 @@ public class BEL{
 
     }
 
-    private static void send(Friend friend, String s) {
+    private void send(Friend friend, String s) {
     }
 
-    private static List<Friend> readFriends() {
+    private List<Friend> readFriends() {
     }
 }
