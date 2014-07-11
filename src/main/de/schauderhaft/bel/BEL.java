@@ -1,6 +1,10 @@
 package de.schauderhaft.bel;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BEL{
@@ -23,5 +27,12 @@ public class BEL{
     }
 
     private List<Friend> readFriends() {
+        try {
+            FileInputStream fis = new FileInputStream("friends");
+            BufferedReader reader = new BufferedReader(fis);
+            return new ArrayList<Friend>();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
