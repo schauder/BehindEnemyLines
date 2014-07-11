@@ -7,7 +7,7 @@ import de.schauderhaft.bel.message.Message;
 import de.schauderhaft.bel.message.MessageBus;
 import de.schauderhaft.bel.message.MessageBusImpl;
 import de.schauderhaft.bel.message.MessageListener;
-import de.schauderhaft.bel.network.UdpMessageDispatcher;
+import de.schauderhaft.bel.network.UdpMessageReceiver;
 import de.schauderhaft.bel.network.UdpMessageSender;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class BelApp {
     private final MessageBus messageBus = new MessageBusImpl();
     private final UdpMessageSender messageSender = new UdpMessageSender();
     private final FriendPool friendPool = new FriendPoolImpl();
-    private volatile UdpMessageDispatcher messageDispatcher;
+    private volatile UdpMessageReceiver messageReceiver;
 
     private final MessageListener dispatchListener = new MessageListener() {
         @Override public void onMessage (Message message) {
@@ -37,13 +37,13 @@ public class BelApp {
 
     public void start() throws SocketException {
         messageBus.addListener (dispatchListener);
-        messageDispatcher = new UdpMessageDispatcher (messageBus, friendPool);
-        messageDispatcher.start();
+        messageReceiver = new UdpMessageReceiver(messageBus, friendPool);
+        messageReceiver.start();
     }
 
     public void stop() {
         messageBus.removeListener (dispatchListener);
-        messageDispatcher.shutdown();
+        messageReceiver.shutdown();
     }
 
     public MessageBus getMessageBus() {

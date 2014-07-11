@@ -14,17 +14,19 @@ import java.net.SocketException;
 /**
  * Created by gerrit on 11.07.14.
  */
-public class UdpMessageDispatcher extends Thread {
+public class UdpMessageReceiver extends Thread {
+    public static final int BUFFER_SIZE = 32768;
+
     private final FriendPool friendPool;
     private final MessageBus messageBus;
 
     private volatile boolean shutdown;
     private final DatagramSocket socket;
 
-    public UdpMessageDispatcher (MessageBus messageBus, FriendPool friendPool) throws SocketException {
+    public UdpMessageReceiver(MessageBus messageBus, FriendPool friendPool) throws SocketException {
         this.messageBus = messageBus;
         this.friendPool = friendPool;
-        socket = new DatagramSocket(8383);        //TODO named constant
+        socket = new DatagramSocket(friendPool.getMyself().address.getPort());
     }
 
     public void shutdown() {
@@ -33,7 +35,7 @@ public class UdpMessageDispatcher extends Thread {
 
     @Override
     public void run() {
-        final byte[] buffer = new byte[32768];
+        final byte[] buffer = new byte[BUFFER_SIZE];
         final DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
         while (!shutdown) {
             try {

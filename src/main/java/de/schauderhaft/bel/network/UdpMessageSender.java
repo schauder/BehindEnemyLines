@@ -15,8 +15,6 @@ import java.util.Collection;
  * @author arno
  */
 public class UdpMessageSender {
-    private final Charset UTF_8 = Charset.forName("UTF-8"); //TODO share with 'receive' code
-
     public void send (Collection<Friend> receivers, Message message) throws IOException {
         final byte[] data = serialize (message);
 
