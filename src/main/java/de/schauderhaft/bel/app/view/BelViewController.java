@@ -66,22 +66,22 @@ public class BelViewController {
 	public void onMessage(Message message) {
 		if (message.getSender().equals(self)) {
 			// make it red
-			fillChatBox("<<<");
+			fillChatBox("<<<", message);
 
 		} else {
-			fillChatBox(">>>");
+			fillChatBox(">>>", message);
 		}
 		chatinput.clear();
 	}
 
-	private void fillChatBox(String fromTO) {
+	private void fillChatBox(String fromTO, Message message) {
 		StringBuilder sb = new StringBuilder(chatbox.getText());
 		sb.append("\n\r");
 		sb.append(fromTO);
 		sb.append(" ");
-		sb.append(self.name);
+		sb.append(message.getSender().name);
 		sb.append(" : ");
-		sb.append(chatinput.getText());
+		sb.append(message.getText());
 		chatbox.setText(sb.toString());
 	}
 }
