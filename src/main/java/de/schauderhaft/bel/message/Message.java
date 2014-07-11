@@ -6,18 +6,18 @@ package de.schauderhaft.bel.message;
  */
 public class Message {
     private final String text;
-    private final User user;
+    private final Friend friend;
 
-    public Message(String text, User user) {
+    public Message(String text, Friend friend) {
         this.text = text;
-        this.user = user;
+        this.friend = friend;
     }
 
     public String getText() {
         return text;
     }
 
-    public User getUser() {
-        return user;
+    public Friend getFriend() {
+        return friend;
     }
 }
