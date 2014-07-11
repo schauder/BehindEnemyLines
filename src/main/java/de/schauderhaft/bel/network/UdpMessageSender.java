@@ -14,15 +14,15 @@ import java.util.Collection;
 /**
  * @author arno
  */
-class UdpMessageSender {
+public class UdpMessageSender {
     private final Charset UTF_8 = Charset.forName("UTF-8"); //TODO share with 'receive' code
 
-    void send (Collection<Friend> receivers, Message message) throws IOException {
+    public void send (Collection<Friend> receivers, Message message) throws IOException {
         final byte[] data = serialize (message);
 
         try (final DatagramSocket socket = new DatagramSocket()) {
             for (Friend receiver: receivers) {
-                final DatagramPacket sendPacket = new DatagramPacket (data, data.length, null /* TODO receiver.getAddress() */);
+                final DatagramPacket sendPacket = new DatagramPacket (data, data.length, receiver.address);
                 socket.send(sendPacket);
             }
         }
