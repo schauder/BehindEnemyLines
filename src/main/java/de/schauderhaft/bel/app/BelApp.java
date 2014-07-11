@@ -1,5 +1,6 @@
 package de.schauderhaft.bel.app;
 
+import de.schauderhaft.bel.friends.Friend;
 import de.schauderhaft.bel.friends.FriendPool;
 import de.schauderhaft.bel.friends.FriendPoolImpl;
 import de.schauderhaft.bel.message.Message;
@@ -43,5 +44,13 @@ public class BelApp {
     public void stop() {
         messageBus.removeListener (dispatchListener);
         messageDispatcher.shutdown();
+    }
+
+    public MessageBus getMessageBus() {
+        return messageBus;
+    }
+
+    public Friend getSelf() {
+        return friendPool.getMyself();
     }
 }
