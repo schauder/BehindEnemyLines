@@ -1,4 +1,4 @@
-package de.schauderhaft.bel.client.view;
+package de.schauderhaft.bel.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
