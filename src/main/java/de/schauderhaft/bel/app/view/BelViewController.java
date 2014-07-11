@@ -2,14 +2,16 @@ package de.schauderhaft.bel.app.view;
 
 import java.util.ResourceBundle;
 
-import de.schauderhaft.bel.friends.Friend;
-import de.schauderhaft.bel.message.MessageBus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import de.schauderhaft.bel.friends.Friend;
+import de.schauderhaft.bel.message.Message;
+import de.schauderhaft.bel.message.MessageBus;
 
 public class BelViewController {
 
@@ -24,15 +26,25 @@ public class BelViewController {
 
 	@FXML
 	private Button pushButton;
-    private MessageBus messageBus;
-    private Friend self;
+	private MessageBus messageBus;
+	private Friend self;
 
-    @FXML
+	@FXML
 	void pushInput(ActionEvent event) {
+		sendMessage();
 	}
 
 	@FXML
 	void pushinput(KeyEvent event) {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			sendMessage();
+		}
+	}
+
+	private void sendMessage() {
+		if (chatinput != null && !chatinput.getText().isEmpty()) {
+			messageBus.newMessage(new Message(chatinput.getText(), self));
+		}
 	}
 
 	@FXML
@@ -43,11 +55,11 @@ public class BelViewController {
 
 	}
 
-    public void setMessageBus(MessageBus messageBus) {
-        this.messageBus = messageBus;
-    }
+	public void setMessageBus(MessageBus messageBus) {
+		this.messageBus = messageBus;
+	}
 
-    public void setSelf(Friend self) {
-        this.self = self;
-    }
+	public void setSelf(Friend self) {
+		this.self = self;
+	}
 }
