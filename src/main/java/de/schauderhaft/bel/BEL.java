@@ -3,9 +3,7 @@ package de.schauderhaft.bel;
 
 import de.schauderhaft.bel.app.BelApp;
 import de.schauderhaft.bel.app.view.BelViewController;
-import de.schauderhaft.bel.friends.Friend;
 import de.schauderhaft.bel.message.Message;
-import de.schauderhaft.bel.message.MessageBus;
 import de.schauderhaft.bel.message.MessageListener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +20,6 @@ public class BEL extends Application{
     public void start(Stage stage) throws Exception {
 
         BelApp app = new BelApp();
-
 
         FXMLLoader loader = new FXMLLoader();
         URL location = getClass().getResource("app/view/ChatClient.fxml");
