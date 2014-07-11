@@ -1,0 +1,14 @@
+.idea/
+*.iml
+*.ipr
+*.iws
+gen/
+local.properties
+out/
+build/
+bin/
+gen/
+*.class
+.project
+.classpath
+.gradle/
