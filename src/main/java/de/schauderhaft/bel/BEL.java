@@ -26,12 +26,22 @@ public class BEL{
     }
 
     private List<Friend> readFriends() {
+        ArrayList<Friend> friends = new ArrayList<Friend>();
         try {
-            FileInputStream fis = new FileInputStream("friends");
+            FileInputStream fis = new FileInputStream("friends.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-        } catch (FileNotFoundException e) {
+
+            String line = reader.readLine();
+            while(line != null){
+                System.out.println(line);
+                String[] parts = line.split(":");
+                friends.add(new Friend(parts[0], parts[1], parts[2]));
+                line = reader.readLine();
+            }
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ArrayList<Friend>();
+        return friends;
     }
 }
