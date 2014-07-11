@@ -1,4 +1,4 @@
-package de.schauderhaft.bel.app;
+package de.schauderhaft.bel.app.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +20,8 @@ public class ChatClientStarter extends Application {
 		stage.show();
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-
+	public void start() {
+		launch("Start");
 	}
+
 }

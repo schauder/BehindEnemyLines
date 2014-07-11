@@ -1,4 +1,4 @@
-package de.schauderhaft.bel.app;
+package de.schauderhaft.bel.app.view;
 
 import java.util.ResourceBundle;
 
