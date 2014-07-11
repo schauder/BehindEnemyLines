@@ -4,7 +4,9 @@ package de.schauderhaft.bel;
 import de.schauderhaft.bel.app.BelApp;
 import de.schauderhaft.bel.app.view.BelViewController;
 import de.schauderhaft.bel.friends.Friend;
+import de.schauderhaft.bel.message.Message;
 import de.schauderhaft.bel.message.MessageBus;
+import de.schauderhaft.bel.message.MessageListener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -29,8 +31,7 @@ public class BEL extends Application{
 
         Parent root = (Parent) loader.load(location.openStream());
 
-        BelViewController controller = (BelViewController)loader.getController();
-
+        final BelViewController controller = (BelViewController)loader.getController();
 
         controller.setMessageBus(app.getMessageBus());
         controller.setSelf(app.getSelf());
@@ -41,7 +42,16 @@ public class BEL extends Application{
         stage.setTitle("Chat Client");
         stage.setScene(scene);
         stage.show();
+
+        app.start();
+        app.getMessageBus().addListener(new MessageListener() {
+            @Override public void onMessage(Message message) {
+                controller.onMessage (message);
+            }
+        });
     }
+
+    //TODO call 'stop' on BelApp when the application is shut down
 
     public static void main(String[] args) {
         launch(args);
