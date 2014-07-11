@@ -1,4 +1,4 @@
-package de.schauderhaft.bel.message;
+package de.schauderhaft.bel.friends;
 
 public class Friend {
     public final String name;
