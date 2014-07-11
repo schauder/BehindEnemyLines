@@ -26,7 +26,7 @@ public class BelApp {
         @Override public void onMessage (Message message) {
             if (friendPool.getMyself().equals (message.getSender())) {
                 try {
-                    messageSender.send (friendPool.getFriends(), message); //TODO without myself
+                    messageSender.send (friendPool.getOthers(), message);
                 } catch (IOException e) {
                     e.printStackTrace(); //TODO error handling
                 }
@@ -36,7 +36,7 @@ public class BelApp {
 
     public void start() throws SocketException {
         messageBus.addListener (dispatchListener);
-        messageDispatcher = new UdpMessageDispatcher();
+        messageDispatcher = new UdpMessageDispatcher (messageBus, friendPool);
         messageDispatcher.start();
     }
 

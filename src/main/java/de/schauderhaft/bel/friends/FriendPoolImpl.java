@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,18 +14,34 @@ import java.util.List;
 public class FriendPoolImpl implements FriendPool {
     private final Friend myself;
     private final Collection<Friend> friends;
+    private final Collection<Friend> others;
 
     public FriendPoolImpl() {
         myself = null; //TODO myself
         friends = readFriends();
+        others = new ArrayList<>(friends);
+        others.remove (myself);
     }
 
     @Override public Friend getMyself() {
-        return null;
+        return myself;
     }
 
     @Override public Collection<Friend> getFriends() {
-        return null;
+        return friends;
+    }
+
+    @Override public Collection<Friend> getOthers() {
+        return others;
+    }
+
+    @Override public Friend lookup (String name) {
+        for (Friend friend : friends) {
+            if (friend.name.equals (name)) {
+                return friend;
+            }
+        }
+        throw new IllegalArgumentException ("no friend " + name);
     }
 
     private List<Friend> readFriends() {

@@ -8,4 +8,8 @@ import java.util.Collection;
 public interface FriendPool {
     Friend getMyself();
     Collection<Friend> getFriends();
+
+    Collection<Friend> getOthers();
+
+    Friend lookup (String name);
 }

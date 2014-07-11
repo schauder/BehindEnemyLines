@@ -8,11 +8,11 @@ import de.schauderhaft.bel.friends.Friend;
  */
 public class Message {
     private final String text;
-    private final Friend friend;
+    private final Friend sender;
 
-    public Message(String text, Friend friend) {
+    public Message(String text, Friend sender) {
         this.text = text;
-        this.friend = friend;
+        this.sender = sender;
     }
 
     public String getText() {
@@ -20,6 +20,6 @@ public class Message {
     }
 
     public Friend getSender() {
-        return friend;
+        return sender;
     }
 }
