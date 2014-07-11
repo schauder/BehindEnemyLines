@@ -1,17 +1,21 @@
 package de.schauderhaft.bel;
 
+<<<<<<< HEAD
 import de.schauderhaft.bel.friends.Friend;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> cleanup
 
 public class BEL{
 
     public static void main(String args[]){
         new BEL();
     }
+<<<<<<< HEAD
 
     public BEL(){
         // read ip adresses+ port to connect to
@@ -45,4 +49,6 @@ public class BEL{
         }
         return friends;
     }
+=======
+>>>>>>> cleanup
 }
