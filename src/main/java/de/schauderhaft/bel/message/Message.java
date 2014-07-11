@@ -1,6 +1,8 @@
 package de.schauderhaft.bel.message;
 
 
+import de.schauderhaft.bel.friends.Friend;
+
 /**
  * @author arno
  */
@@ -17,7 +19,7 @@ public class Message {
         return text;
     }
 
-    public Friend getFriend() {
+    public Friend getSender() {
         return friend;
     }
 }

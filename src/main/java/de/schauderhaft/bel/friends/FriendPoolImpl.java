@@ -1,28 +1,31 @@
-package de.schauderhaft.bel;
+package de.schauderhaft.bel.friends;
 
-import de.schauderhaft.bel.friends.Friend;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class BEL{
+/**
+ * @author arno
+ */
+public class FriendPoolImpl implements FriendPool {
+    private final Friend myself;
+    private final Collection<Friend> friends;
 
-    public static void main(String args[]){
-        new BEL();
+    public FriendPoolImpl() {
+        myself = null; //TODO myself
+        friends = readFriends();
     }
 
-    public BEL(){
-        // read ip adresses+ port to connect to
-        List<Friend> friends  = readFriends();
-
-        for (Friend friend : friends) {
-            send(friend, "hello world");
-        }
-
+    @Override public Friend getMyself() {
+        return null;
     }
 
-    private void send(Friend friend, String s) {
+    @Override public Collection<Friend> getFriends() {
+        return null;
     }
 
     private List<Friend> readFriends() {
@@ -44,4 +47,5 @@ public class BEL{
         }
         return friends;
     }
+
 }
