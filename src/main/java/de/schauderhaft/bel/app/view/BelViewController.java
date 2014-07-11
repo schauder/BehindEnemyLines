@@ -62,4 +62,8 @@ public class BelViewController {
 	public void setSelf(Friend self) {
 		this.self = self;
 	}
+
+	public void onMessage(Message message) {
+
+	}
 }
