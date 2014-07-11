@@ -2,6 +2,8 @@ package de.schauderhaft.bel.app.view;
 
 import java.util.ResourceBundle;
 
+import de.schauderhaft.bel.friends.Friend;
+import de.schauderhaft.bel.message.MessageBus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,8 +24,10 @@ public class BelViewController {
 
 	@FXML
 	private Button pushButton;
+    private MessageBus messageBus;
+    private Friend self;
 
-	@FXML
+    @FXML
 	void pushInput(ActionEvent event) {
 	}
 
@@ -39,4 +43,11 @@ public class BelViewController {
 
 	}
 
+    public void setMessageBus(MessageBus messageBus) {
+        this.messageBus = messageBus;
+    }
+
+    public void setSelf(Friend self) {
+        this.self = self;
+    }
 }
