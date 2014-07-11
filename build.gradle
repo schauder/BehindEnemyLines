@@ -9,6 +9,19 @@ repositories {
     mavenCentral()
 }
 
+//javafx
+def javafxLib = "jfxrt.jar"
+ 
+def getJavaFXPath(def javafxLib) {
+    def javaHome = System.env["JAVA_HOME"]
+    if (javaHome == null) {
+        throw new RuntimeException("JAVA_HOME environment variable must be set")
+    }
+    def javafxrt = "jre" + File.separator + "lib" + File.separator + javafxLib
+    return new File(javaHome, javafxrt).absolutePath
+}
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+	//javafx
+	compile files(getJavaFXPath(javafxLib))
 }
