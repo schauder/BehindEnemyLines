@@ -3,6 +3,7 @@ package de.schauderhaft.bel;
 import de.schauderhaft.bel.friends.Friend;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class BEL{
             while(line != null){
                 System.out.println(line);
                 String[] parts = line.split(":");
-                friends.add(new Friend(parts[0], parts[1], parts[2]));
+                friends.add(new Friend(parts[0],parts[1], parts[2]));
                 line = reader.readLine();
             }
 
