@@ -31,6 +31,8 @@ public class UdpMessageReceiver extends Thread {
 
     public void shutdown() {
         shutdown = true;
+        interrupt();
+        socket.close();
     }
 
     @Override

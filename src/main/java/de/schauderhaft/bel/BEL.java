@@ -6,20 +6,24 @@ import de.schauderhaft.bel.app.view.BelViewController;
 import de.schauderhaft.bel.message.Message;
 import de.schauderhaft.bel.message.MessageListener;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 
-public class BEL extends Application{
+public class BEL extends Application {
+
+    private BelApp app;
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        BelApp app = new BelApp();
+        app = new BelApp();
 
         FXMLLoader loader = new FXMLLoader();
         URL location = getClass().getResource("app/view/ChatClient.fxml");
@@ -28,7 +32,7 @@ public class BEL extends Application{
 
         Parent root = (Parent) loader.load(location.openStream());
 
-        final BelViewController controller = (BelViewController)loader.getController();
+        final BelViewController controller = (BelViewController) loader.getController();
 
         controller.setMessageBus(app.getMessageBus());
         controller.setSelf(app.getSelf());
@@ -42,13 +46,21 @@ public class BEL extends Application{
 
         app.start();
         app.getMessageBus().addListener(new MessageListener() {
-            @Override public void onMessage(Message message) {
-                controller.onMessage (message);
+            @Override
+            public void onMessage(Message message) {
+                controller.onMessage(message);
             }
         });
-    }
 
-    //TODO call 'stop' on BelApp when the application is shut down
+        scene.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.out.println("close request");
+                app.stop();
+            }
+        });
+
+    }
 
     public static void main(String[] args) {
         launch(args);
