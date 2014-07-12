@@ -3,6 +3,8 @@ package de.schauderhaft.bel.network;
 import de.schauderhaft.bel.friends.FriendPool;
 import de.schauderhaft.bel.message.Message;
 import de.schauderhaft.bel.message.MessageBus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -15,6 +17,8 @@ import java.net.SocketException;
  * Created by gerrit on 11.07.14.
  */
 public class UdpMessageReceiver extends Thread {
+    private static final Logger LOG = LoggerFactory.getLogger(UdpMessageReceiver.class);
+
     public static final int BUFFER_SIZE = 32768;
 
     private final FriendPool friendPool;
@@ -45,8 +49,7 @@ public class UdpMessageReceiver extends Thread {
                 final Message msg = deserialize (buffer);
                 messageBus.newMessage (msg);
             } catch (Exception e) {
-                // gnarf
-                e.printStackTrace(); //TODO error handling
+                LOG.error("could not receive packets", e);
             }
 
         }

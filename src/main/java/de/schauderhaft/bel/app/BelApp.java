@@ -9,6 +9,8 @@ import de.schauderhaft.bel.message.MessageBusImpl;
 import de.schauderhaft.bel.message.MessageListener;
 import de.schauderhaft.bel.network.UdpMessageReceiver;
 import de.schauderhaft.bel.network.UdpMessageSender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -18,6 +20,8 @@ import java.net.SocketException;
  * @author arno
  */
 public class BelApp {
+    private static final Logger LOG = LoggerFactory.getLogger(BelApp.class);
+
     private final MessageBus messageBus = new MessageBusImpl();
     private final UdpMessageSender messageSender = new UdpMessageSender();
     private final FriendPool friendPool = new FriendPoolImpl();
@@ -29,7 +33,7 @@ public class BelApp {
                 try {
                     messageSender.send (friendPool.getOthers(), message);
                 } catch (IOException e) {
-                    e.printStackTrace(); //TODO error handling
+                    LOG.error("could not send message", e);
                 }
             }
         }

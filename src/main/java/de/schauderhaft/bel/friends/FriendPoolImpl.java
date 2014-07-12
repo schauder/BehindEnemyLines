@@ -1,5 +1,8 @@
 package de.schauderhaft.bel.friends;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +17,8 @@ import java.util.List;
  * @author arno
  */
 public class FriendPoolImpl implements FriendPool {
+    private static final Logger LOG = LoggerFactory.getLogger(FriendPoolImpl.class);
+
     private final Friend myself;
     private final Collection<Friend> friends;
     private final Collection<Friend> others;
@@ -34,7 +39,7 @@ public class FriendPoolImpl implements FriendPool {
                 }
             }
         } catch (SocketException e) {
-            throw new IllegalStateException (e); //TODO error handling
+            LOG.error("could not determine myself", e);
         }
         throw new IllegalArgumentException ("none of the configured 'friends' matches this machine");
     }
