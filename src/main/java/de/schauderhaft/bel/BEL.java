@@ -55,7 +55,6 @@ public class BEL extends Application {
         scene.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
-                System.out.println("close request");
                 app.stop();
             }
         });
