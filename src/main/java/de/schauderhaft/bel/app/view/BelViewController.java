@@ -24,8 +24,6 @@ public class BelViewController {
 	@FXML
 	private TextField chatinput;
 
-	@FXML
-	private Button pushButton;
 	private MessageBus messageBus;
 	private Friend self;
 
@@ -51,7 +49,6 @@ public class BelViewController {
 	void initialize() {
 		assert chatbox != null : "fx:id=\"chatbox\" was not injected: check your FXML file 'ChatClient.fxml'.";
 		assert chatinput != null : "fx:id=\"chatinput\" was not injected: check your FXML file 'ChatClient.fxml'.";
-		assert pushButton != null : "fx:id=\"pushButton\" was not injected: check your FXML file 'ChatClient.fxml'.";
 
         chatinput.requestFocus();
 
