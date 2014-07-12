@@ -2,11 +2,15 @@
 
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.schauderhaft.bel.app.view.BelViewController">
-  <children>
-    <TextArea fx:id="chatbox" editable="false" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="333.0" prefWidth="572.0" wrapText="true" />
-    <TextField fx:id="chatinput" layoutX="14.0" layoutY="364.0" onKeyPressed="#pushinput" prefHeight="26.0" prefWidth="572.0" />
-  </children>
-</AnchorPane>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.schauderhaft.bel.app.view.BelViewController">
+    <center>
+        <TextArea fx:id="chatbox" editable="false" focusTraversable="false"
+                   wrapText="true"/>
+    </center>
+    <bottom>
+        <TextField fx:id="chatinput" onKeyPressed="#pushinput" />
+    </bottom>
+</BorderPane>
